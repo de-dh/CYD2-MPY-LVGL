@@ -17,6 +17,7 @@ Therefore, spent a lot of time getting CYD-2 to work with Micropython firmware.
 ## CYD2 and MicroPython
 
 <img align="right"  src="img/CYD2_MPY.jpg" width="300" height="auto" />
+
 The standard release of ESP32 MPY-Firmware can be installed on the CYD-2 as described [here](https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display/blob/main/Examples/Micropython/Micropython.md).
 The ILI9431 and xpt2046 drivers are also linked on the site.
 

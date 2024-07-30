@@ -45,10 +45,3 @@ from the aforementioned site. I didn't upload them since I don't hold the copyri
 I couldn't solve the remaining issues yet:
 - The display brightness is notably lower when I use the LVGL firmware compared to the bare MicroPython firmware and drivers
 - Colors are inverted, since I can't activate bgr-color mode in LVGL firmware
-
-## Links
-https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display/blob/main/Examples/Micropython/Micropython.md
-https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display/blob/main/cyd.md
-https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display/tree/main
-
-https://stefan.box2code.de/2023/11/18/esp32-grafik-mit-lvgl-und-micropython/

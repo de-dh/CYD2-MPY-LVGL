@@ -25,7 +25,7 @@ The folder also contains a PinMap. The demo and the PinMap is based on [this dem
 After getting CYD2 to work with standard MPY firmware and the corresponding drivers,
 I figured that the display driver is slow and has very limited capabilities for use.
 
-Therefore, I tried to get MicroPython LVGL to work on this display.
+Therefore, I tried to get [MicroPython LVGL](https://github.com/lvgl/lv_micropython) to work on this display.
 Fortunately, a [prebuild version of the lvgl firmware](https://stefan.box2code.de/2023/11/18/esp32-grafik-mit-lvgl-und-micropython/) is provided for download by Stefan Scholz.
 A modified xpt2046 driver is required and it is available for download on the same site.
 

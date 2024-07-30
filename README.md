@@ -1,7 +1,8 @@
 # CYD2-MPY-LVGL
 
 ## Introduction
-Experimenting with LVGL for Micropython on cheap yellow display.
+
+<img align="right"  src="img/CYD2_Back.jpg" width="300" height="auto" />
 
 The [Cheap Yellow Display](https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display/tree/main) (CYD) is a low-cost device comprised of a ESP32-WROOM equipped with a
 ILI9431 2.4' Display and a xpt2046 touch pad and some more peripherals. I ordered it on AliExpress for 6,19$.
@@ -14,6 +15,8 @@ Unfortunately, I ordered the version with two USB ports and the [available demo]
 Therefore, spent a lot of time getting CYD-2 to work with Micropython firmware.
 
 ## CYD2 and MicroPython
+
+<img align="right"  src="img/CYD2_MPY.jpg" width="300" height="auto" />
 The standard release of ESP32 MPY-Firmware can be installed on the CYD-2 as described [here](https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display/blob/main/Examples/Micropython/Micropython.md).
 The ILI9431 and xpt2046 drivers are also linked on the site.
 
@@ -22,6 +25,9 @@ The folder also contains a PinMap. The demo and the PinMap is based on [this dem
 
 
 ## LVGL + MPY
+
+<img align="right"  src="img/CYD2_LVGL.jpg" width="300" height="auto" />
+
 After getting CYD2 to work with standard MPY firmware and the corresponding drivers,
 I figured that the display driver is slow and has very limited capabilities for use.
 

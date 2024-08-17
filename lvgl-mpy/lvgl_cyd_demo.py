@@ -6,7 +6,7 @@ Flashed with esptool
 
 Running on cheap yellow display with TWO USB Ports
 --> display is worse than the original cyd with only one USB port
-see: https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display/blob/main/cyd.md
+see: https://5github.com/witnessmenow/ESP32-Cheap-Yellow-Display/blob/main/cyd.md
 
 
 Source of demo script:
@@ -25,51 +25,22 @@ import time
 from xpt2046_cyd import xpt2046
 import gc
 
-'''
-import network
-import espnow  <-- module doesn't exist?
-
->> ImportError: no module named 'espnow'
-'''
 
 try:
-    '''Calibration commands for ili9341 display from:
-    https://github.com/rdagger/micropython-ili9341
-
-        MIRROR_ROTATE = {  # MADCTL configurations for rotation and mirroring
-        (False, 0): 0x80,  # 1000 0000
-        (False, 90): 0xE0,  # 1110 0000
-        (False, 180): 0x40,  # 0100 0000
-        (False, 270): 0x20,  # 0010 0000
-        (True, 0): 0xC0,   # 1100 0000 <--- Mirroring in ls mode
-        (True, 90): 0x60,  # 0110 0000
-        (True, 180): 0x00,  # 0000 0000
-        (True, 270): 0xA0  # 1010 0000
-    }
-    '''
-    
-    '''
-    Correct calibration for display in landscape mode
-    
-    Upper left corner (where the USB ports are located) is touch = (0, 0)
-    Custom MADCTL from other ili9341 driver for mirroring in landscape mode: rot = 0xC0
-    
-    Colors are wrong, swap_rgb565_bytes not available (due to build?)
-    lv.PALETTE.BLUE --> Orange on screen
-    '''
     disp = ili9XXX.ili9341(clk=14, cs=15,
                            dc=2, rst=12, power=23, miso=12,
                            mosi=13, width = 320, height = 240,
-                           rot = 0xC0)
+                           rot = 0xC0, colormode=ili9XXX.COLOR_MODE_RGB,
+                                    double_buffer = False, factor = 16)
     
-    spi2=SoftSPI(baudrate=2500000,sck=Pin(25),mosi=Pin(32),miso=Pin(39))
+    spiTouch = SoftSPI(baudrate = 2500000, sck = Pin(25),
+                        mosi = Pin(32), miso = Pin(39))
     
-    # custom touch driver, see start of document
-    touch = xpt2046(spi=spi2, cs=Pin(33), cal_x0 = 3700,
+    touch = xpt2046(spi = spiTouch, cs = Pin(33), cal_x0 = 3700,
                 cal_y0 = 3820, cal_x1 = 180, cal_y1 = 250, transpose=False)
     
-    bgl = Pin(21, Pin.OUT) # Backlight initialized seperately for testing
-    bgl(1)
+    backlight = Pin(21, Pin.OUT)
+    backlight(1)
     
     style = lv.style_t()
     style.init()
@@ -92,9 +63,6 @@ try:
     style.set_outline_opa(lv.OPA.COVER)
     style.set_outline_color(lv.palette_main(lv.PALETTE.BLUE))
 
-    '''
-    Originally lv.color_white() --> looks bad, text is barely visible
-    '''
     style.set_text_color(lv.color_black())
     style.set_pad_all(10)
 
@@ -136,6 +104,8 @@ except KeyboardInterrupt:
     print("Exiting...")
 #finally:
     bgl(0)
-    gc.collect()
     disp.deinit()
     touch.deinit()
+    spiTouch.deinit()
+    gc.collect()
+    

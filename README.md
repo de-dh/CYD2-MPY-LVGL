@@ -44,5 +44,5 @@ from the aforementioned site. I didn't upload them since I don't hold the copyri
 
 ### Remaining Issues
 I couldn't solve the remaining issues yet:
-- The display brightness is notably lower when I use the LVGL firmware compared to the bare MicroPython firmware and drivers
-- Colors are inverted, since I can't activate bgr-color mode in LVGL firmware
+- ~~The display brightness is notably lower when I use the LVGL firmware compared to the bare MicroPython firmware and drivers~~ --> set bgcolor of active screen to white
+- ~~Colors are inverted, since I can't activate bgr-color mode in LVGL firmware~~ --> use `colormode=ili9XXX.COLOR_MODE_RGB` in disp driver initialization

@@ -9,7 +9,7 @@ ILI9431 2.4' Display and a xpt2046 touch pad and some more peripherals. I ordere
 
 [Two similar versions of CYD are available](https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display/blob/main/cyd.md). The first version has one USB port (i call this "CYD") and the second version
 features two USB ports (i call this "CYD-2"). Although the remaining components are identical, there seems to be a difference in the
-display driver.
+display drivers color management.
 
 Unfortunately, I ordered the version with two USB ports and the [available demo](https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display/blob/main/Examples/Micropython/demo.py) is written for the one-port CYD.
 Therefore, spent a lot of time getting CYD-2 to work with Micropython firmware.
@@ -41,8 +41,3 @@ It can found in the `/lvgl-mpy` folder.
 
 The prebuild version of the MPY-LVGL firmware and the modified xpt2046 driver need to be downloaded
 from the aforementioned site. I didn't upload them since I don't hold the copyright.
-
-### Remaining Issues
-I couldn't solve the remaining issues yet:
-- ~~The display brightness is notably lower when I use the LVGL firmware compared to the bare MicroPython firmware and drivers~~ --> set bgcolor of active screen to white
-- ~~Colors are inverted, since I can't activate bgr-color mode in LVGL firmware~~ --> use `colormode=ili9XXX.COLOR_MODE_RGB` in disp driver initialization

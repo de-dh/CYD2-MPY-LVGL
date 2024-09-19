@@ -5,14 +5,25 @@
 <img align="right"  src="img/CYD2_Back.jpg" width="300" height="auto" />
 
 The [Cheap Yellow Display](https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display/tree/main) (CYD) is a low-cost device comprised of a ESP32-WROOM equipped with a
-ILI9431 2.4' Display and a xpt2046 touch pad and some more peripherals. I ordered it on AliExpress for 6,19$.
+ILI9431 2.4' Display and a xpt2046 touch pad and some more peripherals. It can be found on AliExpress for 7$ - 15$ depending on the seller and available promotions.
 
 [Two similar versions of CYD are available](https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display/blob/main/cyd.md). The first version has one USB port (i call this "CYD") and the second version
-features two USB ports (i call this "CYD-2"). Although the remaining components are identical, there seems to be a difference in the
-display drivers color management.
+features two USB ports (i call this "CYD-2"). Although the remaining components are identical, there is a difference in the display drivers color management.
 
-Unfortunately, I ordered the version with two USB ports and the [available demo](https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display/blob/main/Examples/Micropython/demo.py) is written for the one-port CYD.
-Therefore, spent a lot of time getting CYD-2 to work with Micropython firmware.
+## Color Mode for CYD2
+Those changes are neccessary for correct color-display on CYD2.
+During display initialization in pure Micropython, bgr-mode needs to be disabled:
+
+```python
+Display(self.spi_display, dc=Pin(2), cs=Pin(15), rst=Pin(15), width = 320, height = 240, bgr = False)
+```
+
+When using LVGL on CYD2, the colormode needs to be set during initialization of the display driver.
+
+```python
+disp = ili9XXX.ili9341(clk=14, cs=15, dc=2, rst=12, power=23, miso=12, mosi=13, width = 320, height = 240,
+rot = 0xC0, colormode=ili9XXX.COLOR_MODE_RGB, double_buffer = False, factor = 16)
+```
 
 ## CYD2 and MicroPython
 

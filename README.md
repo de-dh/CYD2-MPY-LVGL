@@ -30,7 +30,8 @@ from the aforementioned site. I didn't upload them since I don't hold the copyri
 
 ### Color Mode for CYD2
 
-When using LVGL on CYD2, the colormode needs to be set during initialization of the display driver (thanks to Stefan Scholz for the help).
+When using LVGL on CYD2, `colormode=ili9XXX.COLOR_MODE_RGB` needs to be set during initialization of the display driver (thanks to Stefan Scholz for the help).
+If you use the normal CYD, just remove this parameter from display initialization in the `display_driver.py` file.
 
 ```python
 disp = ili9XXX.ili9341(clk=14, cs=15, dc=2, rst=12, power=23, miso=12, mosi=13, width = 320, height = 240,
@@ -40,8 +41,17 @@ rot = 0xC0, colormode=ili9XXX.COLOR_MODE_RGB, double_buffer = False, factor = 16
 
 ### Demo Programms
 
-Several demos can be found in the `/lvgl-mpy` folder.
+Several demos can be found in the `/demo-lvgl` folder. Flash the prebuild firmware with esptool.py and upload the content of the `/demo-lvgl` folder to your CYD.
+The modified xpt2046 driver is included in the `lib` folder. Display and touchscreen are initialized in the `display_driver.py` file in the `lib` folder.
 
+The demo programms demonstrate the following functions of lvgl on CYD(2):
+
+- simple demo with buttons and callback functions
+- using CYD2 in portrait mode
+- loading a png image
+- loading a custom text font
+- loading a custom icon font
+- advanced demo with multiple screens and asyncio
 
 
 
@@ -55,7 +65,7 @@ Several demos can be found in the `/lvgl-mpy` folder.
 <img align="right"  src="img/CYD2_MPY.jpg" width="230" height="auto" />
 
 The standard release of ESP32 MPY-Firmware can be installed on the CYD-2 as described [here](https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display/blob/main/Examples/Micropython/Micropython.md).
-The ILI9341 driver and the xpt2046 driver can be found in the `/mpy` folder. 
+The ILI9341 driver and the xpt2046 driver can be found in the `/demo_no_lvgl` folder. 
 
 ### Color Mode for CYD2
 
@@ -66,5 +76,5 @@ Display(self.spi_display, dc=Pin(2), cs=Pin(15), rst=Pin(15), width = 320, heigh
 
 ### Demo Programm
 
-A working demo and the drivers can be found in the `/mpy` folder. 
+A working demo and the drivers can be found in the `/demo_no_lvgl` folder. 
 Draw functions can be used and touch actions can be assigned to multiple areas on screen in the demo programm.

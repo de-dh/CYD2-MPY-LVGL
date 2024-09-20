@@ -6,7 +6,8 @@
 The [Cheap Yellow Display](https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display/tree/main) (CYD) aka ESP32-2432S028 is a low-cost device comprised of a ESP32-WROOM equipped with a
 ILI9431 2.4' Display and a xpt2046 touch pad and some more peripherals. It can be found on AliExpress for 7$ - 15$ depending on the seller and available promotions.
 
-This repository is about running LVGL under Miropython firmware on the cheap yellow display. This setup enables the use of Thonny to create and debug programms easily.
+**This repository is about running LVGL under Miropython firmware on the cheap yellow display.** 
+This setup enables the use of Thonny to create and debug programms easily.
 The CYD is ideal for small IOT projects and LVGL provides a convenient solution to create user interfaces.
 
 The demo programms demonstrate the following functions of lvgl on CYD(2):

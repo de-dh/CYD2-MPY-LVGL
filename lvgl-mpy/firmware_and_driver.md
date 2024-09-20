@@ -1,1 +1,0 @@
-https://stefan.box2code.de/2023/11/18/esp32-grafik-mit-lvgl-und-micropython/

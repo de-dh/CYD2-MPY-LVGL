@@ -9,6 +9,15 @@ ILI9431 2.4' Display and a xpt2046 touch pad and some more peripherals. It can b
 This repository is about running LVGL under Miropython firmware on the cheap yellow display. This setup enables the use of Thonny to create and debug programms easily.
 The CYD is ideal for small IOT projects and LVGL provides a convenient solution to create user interfaces.
 
+The demo programms demonstrate the following functions of lvgl on CYD(2):
+
+- simple demo with buttons and callback functions
+- using CYD2 in portrait mode
+- loading a png image
+- loading a custom text font
+- loading a custom icon font
+- advanced demo with multiple screens, a chart with data imported from a .csv file and asyncio usage
+
 [Two similar versions of CYD are available](https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display/blob/main/cyd.md). 
 The first version has one USB port (i call this "CYD") and the second version features two USB ports (i call this "CYD-2"). 
 Although the remaining components are identical, there is a difference in the display drivers color management.
@@ -51,7 +60,7 @@ The demo programms demonstrate the following functions of lvgl on CYD(2):
 - loading a png image
 - loading a custom text font
 - loading a custom icon font
-- advanced demo with multiple screens and asyncio
+- advanced demo with multiple screens, a chart with data imported from a .csv file and asyncio usage
 
 
 

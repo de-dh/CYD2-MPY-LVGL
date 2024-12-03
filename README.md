@@ -1,3 +1,9 @@
+> [!NOTE]
+> This repositry is meant to show you how to quickly get LVGL under Micropython on the Cheap-Yellow-Display working and save you some time and pain.
+> Everyone is welcome to contribute to this repositry and share his / her knowledge.
+
+
+
 # CYD2-MPY-LVGL
 
 ## Introduction
@@ -5,6 +11,11 @@
 
 The [Cheap Yellow Display](https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display/tree/main) (CYD) aka ESP32-2432S028 is a low-cost device comprised of a ESP32-WROOM equipped with a
 ILI9431 2.4' Display and a xpt2046 touch pad and some more peripherals. It can be found on AliExpress for 7$ - 15$ depending on the seller and available promotions.
+In my opinion this combination is great for GUI development for small IOT projects since the CYD is extremely cost effective.
+
+
+However, getting LVGL + MPY to work on the CYD(2) was very time-consuming and annoying. 
+This documentation might save you a lot of time which I wasted.
 
 **This repository is about running LVGL under Miropython firmware on the cheap yellow display.** 
 This setup enables the use of Thonny to create and debug programms easily.

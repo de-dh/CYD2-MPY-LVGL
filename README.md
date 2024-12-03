@@ -1,7 +1,7 @@
 # CYD2-MPY-LVGL
 
 ## Introduction
-<img align="right"  src="doc/CYD1.jpg" width="300" height="auto" />
+<img align="right"  src="doc/CYD1.jpg" width="250" height="auto" />
 
 The [Cheap Yellow Display](https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display/tree/main) (CYD) aka ESP32-2432S028 is a low-cost device comprised of a ESP32-WROOM equipped with a
 ILI9431 2.4' Display and a xpt2046 touch pad and some more peripherals. It can be found on AliExpress for 7$ - 15$ depending on the seller and available promotions.
@@ -22,6 +22,8 @@ The demo programms demonstrate the following functions of lvgl on CYD(2):
 [Two similar versions of CYD are available](https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display/blob/main/cyd.md). 
 The first version has one USB port (i call this "CYD") and the second version features two USB ports (i call this "CYD-2"). 
 Although the remaining components are identical, there is a difference in the display drivers color management.
+
+<img src="doc/CYD_Chart.jpg" width="250" height="auto" />
 
 
 ## CYD2 and LVGL + Micropython
@@ -89,6 +91,9 @@ MIRROR_ROTATE = {  # MADCTL configurations for rotation and mirroring
 Several demos can be found in the `/demo-lvgl` folder. Flash the prebuild firmware with esptool.py and **upload the complete content** of the `/demo-lvgl` folder to your CYD.
 The modified xpt2046 driver is included in the `lib` folder. Display and touchscreen are initialized in the `display_driver.py` file in the `lib` folder.
 
+<img align="right"  src="doc/CYD_Simple.jpg" width="300" height="auto" />
+
+
 The demo programms demonstrate the following functions of lvgl on CYD(2):
 
 - simple demo with buttons and callback functions
@@ -119,3 +124,5 @@ Display(self.spi_display, dc=Pin(2), cs=Pin(15), rst=Pin(15), width = 320, heigh
 
 A working demo and the drivers can be found in the `/demo_no_lvgl` folder. 
 Draw functions can be used and touch actions can be assigned to multiple areas on screen in the demo programm.
+
+<img src="doc/CYD_MPY_Only.jpg" width="300" height="auto" />

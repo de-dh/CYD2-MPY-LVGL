@@ -26,17 +26,34 @@ Although the remaining components are identical, there is a difference in the di
 
 ## CYD2 and LVGL + Micropython
 
+> [!IMPORTANT]
+> Summary of the steps needed to make the LVGL demo programms work on your CYD/CYD2:
+> - Download the LVGL-MPY firmware from the link below and flash it to your CYD using esptool.py.
+> - Upload the upload the complete content of the `/demo-lvgl` folder to your CYD.
+> - Run demo programm (which most likely looks wrong at this point).
+> - Open `demo_lvgl/lib/display_driver.py` and adjust display color mode and rotation settings (you have to test the different settings until you find the correct ones).
+
+
 ### Drivers and Firmware
 After getting CYD2 to work with standard MPY firmware and the corresponding drivers,
 I figured that the display driver is slow and has very limited capabilities for use.
 
-A [prebuild version of the lvgl firmware 8.3.6. for CYD](https://stefan.box2code.de/2023/11/18/esp32-grafik-mit-lvgl-und-micropython/) is provided for download by Stefan Scholz.
-Furthermore, a modified xpt2046 driver is required and it is available for download on the same site.
-I further modified the driver to support portrait mode.
+A [prebuild version of the lvgl firmware 8.3.6. for CYD](https://stefan.box2code.de/2023/11/18/esp32-grafik-mit-lvgl-und-micropython/) is provided for download by Stefan Scholz in his awesome blog post.
+Furthermore, Stefan Scholz modified the xpt2046 driver on his side.
+I further modified the driver to support portrait mode (included in the lvgl_demo folder).
 
 The prebuild version of the MPY-LVGL firmware needs to be downloaded from the aforementioned site. 
 I didn't upload them since I don't hold the copyright.
 
+Here are direct download links for non-german users (use one of the first three versions for CYD/CYD2):
+
+- [Esp32WROOM](https://stefan.box2code.de/wp-content/uploads/2023/11/lv_micropython-WROOM.zip) 
+- [Esp32WROOM + espnow](https://stefan.box2code.de/wp-content/uploads/2024/04/lv_micropython-WROOM_EspNow.zip)
+- [Esp32WROOM + async espnow](https://stefan.box2code.de/wp-content/uploads/2024/04/lv_micropython-WROOM_AOIEspNow.zip)
+- [Esp32WROVER](https://stefan.box2code.de/huge_files/lv_micropython-WROVER.zip)
+
+The .zip archives already contain a `flash.sh` file for flashing with esptool.py under unix (i guess).
+You might need to change `python` to `python3` and `-p /dev/ttyUSB0` to `--port COMXX` (XX = your COM address) if you use esptool.py with windows command line.
 
 ### Adjusting the display settings for CYD2
 
@@ -80,14 +97,6 @@ The demo programms demonstrate the following functions of lvgl on CYD(2):
 - loading a custom text font
 - loading a custom icon font
 - advanced demo with multiple screens, a chart with data imported from a .csv file and asyncio usage
-
-
-> [!IMPORTANT]
-> Summary of the steps needed to make the demo programms work on your CYD/CYD2:
-> - Download the LVGL-MPY firmware from the above link and flash it to your CYD using esptool.py.
-> - Upload the upload the complete content of the `/demo-lvgl` folder to your CYD.
-> - Run demo programm (which most likely looks wrong at this point).
-> - Open `demo_lvgl/lib/display_driver.py` and adjust display color mode and rotation settings (you have to test the different settings until you find the correct ones).
 
 
 

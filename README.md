@@ -34,24 +34,42 @@ A [prebuild version of the lvgl firmware 8.3.6. for CYD](https://stefan.box2code
 Furthermore, a modified xpt2046 driver is required and it is available for download on the same site.
 I further modified the driver to support portrait mode.
 
-The prebuild version of the MPY-LVGL firmware and the modified xpt2046 driver need to be downloaded
-from the aforementioned site. I didn't upload them since I don't hold the copyright.
+The prebuild version of the MPY-LVGL firmware needs to be downloaded from the aforementioned site. 
+I didn't upload them since I don't hold the copyright.
 
 
-### Color Mode for CYD2
+### Adjusting the display settings for CYD2
 
-When using LVGL on CYD2, `colormode=ili9XXX.COLOR_MODE_RGB` needs to be set during initialization of the display driver (thanks to Stefan Scholz for the help).
-If you use the normal CYD, just remove this parameter from display initialization in the `display_driver.py` file.
+Although my CYD2's look all the same, some require adjustments for the initialization of the display driver (thanks to Stefan Scholz for the help).
+Some of my boards only need the colormode changed, for others I also had to change the rotation settings.
+You just have to figure it out by trying.
+
+Open `demo_lvgl/lib/display_driver.py` and look for the display initialization command:
 
 ```python
 disp = ili9XXX.ili9341(clk=14, cs=15, dc=2, rst=12, power=23, miso=12, mosi=13, width = 320, height = 240,
 rot = 0xC0, colormode=ili9XXX.COLOR_MODE_RGB, double_buffer = False, factor = 16)
 ```
 
+If your colors are inverted, replace `colormode=ili9XXX.COLOR_MODE_RGB` with `colormode=ili9XXX.COLOR_MODE_BGR`.
+If the rotation is wrong, change `rot = 0xC0` to `rot = 0xXX` according to the table below. 
+Try the different values until you get the right one.
 
+```python
+MIRROR_ROTATE = {  # MADCTL configurations for rotation and mirroring
+    (False, 0): 0x80,  # 1000 0000
+    (False, 90): 0xE0,  # 1110 0000
+    (False, 180): 0x40,  # 0100 0000
+    (False, 270): 0x20,  # 0010 0000
+    (True, 0): 0xC0,   # 1100 0000
+    (True, 90): 0x60,  # 0110 0000
+    (True, 180): 0x00,  # 0000 0000
+    (True, 270): 0xA0  # 1010 0000
+}
+```
 ### Demo Programms
 
-Several demos can be found in the `/demo-lvgl` folder. Flash the prebuild firmware with esptool.py and upload the content of the `/demo-lvgl` folder to your CYD.
+Several demos can be found in the `/demo-lvgl` folder. Flash the prebuild firmware with esptool.py and **upload the complete content** of the `/demo-lvgl` folder to your CYD.
 The modified xpt2046 driver is included in the `lib` folder. Display and touchscreen are initialized in the `display_driver.py` file in the `lib` folder.
 
 The demo programms demonstrate the following functions of lvgl on CYD(2):
@@ -64,7 +82,12 @@ The demo programms demonstrate the following functions of lvgl on CYD(2):
 - advanced demo with multiple screens, a chart with data imported from a .csv file and asyncio usage
 
 
-
+> [!IMPORTANT]
+> Summary of the steps needed to make the demo programms work on your CYD/CYD2:
+> - Download the LVGL-MPY firmware from the above link and flash it to your CYD using esptool.py.
+> - Upload the upload the complete content of the `/demo-lvgl` folder to your CYD.
+> - Run demo programm (which most likely looks wrong at this point).
+> - Open `demo_lvgl/lib/display_driver.py` and adjust display color mode and rotation settings (you have to test the different settings until you find the correct ones).
 
 
 

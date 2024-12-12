@@ -2,6 +2,10 @@
 > This repositry is meant to show you how to quickly get LVGL under Micropython on the Cheap-Yellow-Display working and save you some time and pain.
 > Everyone is welcome to contribute to this repositry and share his / her knowledge.
 
+> [!WARNING]
+> All demo programs were tested with the prebuild firmware linked in this repositry using **LVGL version 8.3.6.** and **Micropython version 1.19.1.**
+> The demo programs may be incompatible with other versions of LVGL / MPY.
+
 
 
 # CYD2-MPY-LVGL

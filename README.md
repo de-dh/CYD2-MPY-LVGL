@@ -56,8 +56,8 @@ After getting CYD2 to work with standard MPY firmware and the corresponding driv
 I figured that the display driver is slow and has very limited capabilities for use.
 
 A [prebuild version of the lvgl firmware 8.3.6. for CYD](https://stefan.box2code.de/2023/11/18/esp32-grafik-mit-lvgl-und-micropython/) is provided for download by Stefan Scholz in his awesome blog post.
-Furthermore, Stefan Scholz modified the xpt2046 driver on his side.
-I further modified the driver to support portrait mode (included in the lvgl_demo folder).
+Furthermore, Stefan Scholz modified the xpt2046 driver used in his blog.
+I further modified the driver to support portrait mode (included in the `lvgl_demo/lib folder`).
 
 The prebuild version of the MPY-LVGL firmware needs to be downloaded from the aforementioned site. 
 I didn't upload them since I don't hold the copyright.
@@ -111,7 +111,7 @@ MIRROR_ROTATE = {
 ```
 ### Demo Programms
 
-Several demos can be found in the `/demo-lvgl` folder. Flash the prebuild firmware with esptool.py and **upload the complete content** of the `/demo-lvgl` folder to your CYD.
+Several demos can be found in the `/demo-lvgl` folder. Flash the prebuild firmware with esptool.py and **upload the complete content** of the `/demo-lvgl` folder to your CYD (not the folder itself).
 The modified xpt2046 driver is included in the `lib` folder. Display and touchscreen are initialized in the `display_driver.py` file in the `lib` folder.
 
 <img align="right"  src="doc/CYD_Simple.jpg" width="300" height="auto" />

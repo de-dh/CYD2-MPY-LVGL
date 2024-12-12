@@ -10,8 +10,8 @@
 <img align="right"  src="doc/CYD1.jpg" width="250" height="auto" />
 
 The [Cheap Yellow Display](https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display/tree/main) (CYD) aka ESP32-2432S028 is a low-cost device comprised of a ESP32-WROOM equipped with a
-ILI9431 2.4' Display and a xpt2046 touch pad and some more peripherals. It can be found on AliExpress for 7$ - 15$ depending on the seller and available promotions.
-In my opinion this combination is great for GUI development for small IOT projects since the CYD is extremely cost effective.
+ILI9431 2.4' Display and a xpt2046 resistive touch pad and some more peripherals. It can be found on AliExpress for 7$ - 15$ depending on the seller and available promotions.
+In my opinion, this combination is great for GUI development for small IOT projects.
 
 
 However, getting LVGL + MPY to work on the CYD(2) was very time-consuming and annoying. 
@@ -42,7 +42,7 @@ Although the remaining components are identical, there is a difference in the di
 > [!IMPORTANT]
 > Summary of the steps needed to make the LVGL demo programms work on your CYD/CYD2:
 > - Download the LVGL-MPY firmware from the link below and flash it to your CYD using esptool.py.
-> - Upload the upload the complete content of the `/demo-lvgl` folder to your CYD.
+> - Upload the complete content of the `/demo-lvgl` folder to your CYD's root (not the folder itself).
 > - Run demo programm (which most likely looks wrong at this point).
 > - Open `demo_lvgl/lib/display_driver.py` and adjust display color mode and rotation settings (you have to test the different settings until you find the correct ones).
 
@@ -58,7 +58,7 @@ I further modified the driver to support portrait mode (included in the lvgl_dem
 The prebuild version of the MPY-LVGL firmware needs to be downloaded from the aforementioned site. 
 I didn't upload them since I don't hold the copyright.
 
-Here are direct download links for non-german users (use one of the first three versions for CYD/CYD2):
+Here are direct download links from Stefan's Blog for non-german users (use one of the first three versions for CYD/CYD2):
 
 - [Esp32WROOM](https://stefan.box2code.de/wp-content/uploads/2023/11/lv_micropython-WROOM.zip) 
 - [Esp32WROOM + espnow](https://stefan.box2code.de/wp-content/uploads/2024/04/lv_micropython-WROOM_EspNow.zip)
@@ -67,11 +67,17 @@ Here are direct download links for non-german users (use one of the first three 
 
 The .zip archives already contain a `flash.sh` file for flashing with esptool.py under unix (i guess).
 You might need to change `python` to `python3` and `-p /dev/ttyUSB0` to `--port COMXX` (XX = your COM address) if you use esptool.py with windows command line.
+Open command line and navigate to the folder containing the source files (use the `cd` command, e. g. `cd Desktop/lv_micropython-WROOM`).
+Then run the esptool command.
+In my case I had to use the following command:
+```
+python -m esptool --chip esp32 --port COM13 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 80m --flash_size 4MB 0x1000 bootloader/bootloader.bin 0x10000 micropython.bin 0x8000 partition_table/partition-table.bin 
+```
 
 ### Adjusting the display settings for CYD2
 
 Although my CYD2's look all the same, some require adjustments for the initialization of the display driver (thanks to Stefan Scholz for the help).
-Some of my boards only need the colormode changed, for others I also had to change the rotation settings.
+Some of my boards only needed the colormode to be changed, other also required different rotation settings.
 You just have to figure it out by trying.
 
 Open `demo_lvgl/lib/display_driver.py` and look for the display initialization command:
@@ -86,15 +92,17 @@ If the rotation is wrong, change `rot = 0xC0` to `rot = 0xXX` according to the t
 Try the different values until you get the right one.
 
 ```python
-MIRROR_ROTATE = {  # MADCTL configurations for rotation and mirroring
-    (False, 0): 0x80,  # 1000 0000
-    (False, 90): 0xE0,  # 1110 0000
-    (False, 180): 0x40,  # 0100 0000
-    (False, 270): 0x20,  # 0010 0000
-    (True, 0): 0xC0,   # 1100 0000
-    (True, 90): 0x60,  # 0110 0000
-    (True, 180): 0x00,  # 0000 0000
-    (True, 270): 0xA0  # 1010 0000
+# Excerpt from the ILI9341 driver MADCTL configurations for rotation and mirroring.
+# First value stands for mirroring, second value stands for rotation.
+MIRROR_ROTATE = {
+    (False, 0): 0x80, 
+    (False, 90): 0xE0,
+    (False, 180): 0x40,
+    (False, 270): 0x20,
+    (True, 0): 0xC0,
+    (True, 90): 0x60,
+    (True, 180): 0x00,
+    (True, 270): 0xA0
 }
 ```
 ### Demo Programms

@@ -14,7 +14,7 @@
 <img align="right"  src="doc/CYD1.jpg" width="250" height="auto" />
 
 The [Cheap Yellow Display](https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display/tree/main) (CYD) aka ESP32-2432S028 is a low-cost device comprised of a ESP32-WROOM equipped with a
-ILI9431 2.4' Display and a xpt2046 resistive touch pad and some more peripherals. It can be found on AliExpress for 7$ - 15$ depending on the seller and available promotions.
+ILI9431 2.8' Display and a xpt2046 resistive touch pad and some more peripherals. It can be found on AliExpress for 7$ - 15$ depending on the seller and available promotions.
 In my opinion, this combination is great for GUI development for small IOT projects.
 
 

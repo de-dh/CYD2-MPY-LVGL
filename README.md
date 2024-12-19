@@ -126,6 +126,15 @@ The demo programms demonstrate the following functions of lvgl on CYD(2):
 - loading a custom icon font
 - advanced demo with multiple screens, a chart with data imported from a .csv file and asyncio usage
 
+## LVGL Tips
+
+### Font Converter
+
+Use the [font converter](https://lvgl.io/tools/fontconverter) to compile custom fonts for LVGL. 
+The image shows the settings used to compile fonts and load them in the demo script (click to enlarge).
+
+
+<img src="doc/Font_Converter_Settings.jpg" width="250" height="auto" />
 
 
 
